@@ -1,71 +1,38 @@
-@extends('layouts.app')
+@include('layouts.header')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="center-block w-xxl w-auto-xs p-y-md">
+    <div class="navbar">
+      <div class="pull-center">
+        <div ui-include="'../views/blocks/navbar.brand.html'"></div>
+      </div>
     </div>
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+      <div class="m-b text-sm">
+       <img src="{{ URL::asset('images/itobuz.png') }}" style="width:60px"><b> Itobuz Technologies Office+</b>
+      </div>    
+    <div class="box">  
+      @if ( count( $errors ) > 0 )
+              @foreach ($errors->all() as $error)
+              <div class="alert alert-warning">{{ $error }}</div>
+              @endforeach
+              @endif
+       {!!Form::model(['method'=>'POST', 'url' =>['home']])!!}
+
+        <div class="md-form-group float-label">
+        <b>{!! Form::label('Email','Email') !!}</b>
+                 {!! Form::email ('email',null,['class'=>'md-input']) !!}
+        </div>
+        <div class="md-form-group float-label">
+           <b>{!! Form::label('password','Password') !!}</b>
+                 {!! Form::password ('password',['class'=>'md-input','type'=>'password']) !!}
+
+        </div>      
+
+       <b>{!! Form::button('Login',['class' => 'btn primary btn-block p-x-md','type' => 'submit','style' => 'width:230px' ]) !!}</b>
+
+      </form>
+  </div>
 </div>
-@endsection
+<center><a href="http://itobuz.com/">  www.itobuz.com  </a></center>
+
+@include('layouts.footer')

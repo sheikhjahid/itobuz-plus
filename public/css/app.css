@@ -2443,12 +2443,13 @@ body {
   overflow: hidden; }
 
 .item-bg img {
-  position: absolute;
-  width: 110%;
-  left: 50%;
-  top: 50%;
-  margin-left: -55%;
-  margin-top: -55%; }
+  height: 150%;
+    position: absolute;
+    width: 156%;
+    left: 56%;
+    top: 90%;
+    margin-left: -57%;
+    margin-top: -26%; }
 
 .blur {
   -webkit-filter: blur(3px);

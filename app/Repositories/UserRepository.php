@@ -5,6 +5,7 @@ use App\Contracts\UserInterface;
 use App\User;
 use App\Team;
 use App\Role;
+use Auth;
 use DB;
 
 class UserRepository implements UserInterface
@@ -96,6 +97,36 @@ class UserRepository implements UserInterface
 		}
 		catch(\Exception $e)
 		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getProfileData()
+	{
+		try
+		{
+		  return Auth::user()->with('team','role')->get();
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function uploadUserImage($id, $image)
+	{
+		DB::beginTransaction();
+		try
+		{
+			$uploadImage = $this->user->find($id)->update([
+				'image' => $image
+			]);
+			DB::commit();
+			return $uploadImage;
+		}
+		catch(\Exception $e)
+		{
+			DB::rollback();
 			return $e->getMessage();
 		}
 	}

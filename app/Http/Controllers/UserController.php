@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Contracts\UserInterface;
 use App\Contracts\TeamInterface;
 use App\Contracts\RoleInterface;
+use Auth;
 
 class UserController extends Controller
 {
@@ -96,5 +97,46 @@ class UserController extends Controller
     	{
     		return view('User.searchUser')->with('userdata',$checkSearchData);
     	}
+    }
+
+    public function userProfile()
+    {
+    	$userData = $this->userInterface->getProfileData();
+    	return view('User.profile')->with('userdata',$userData);    	
+    }
+
+    public function uploadImage(Request $request)
+    {
+    	$requestData = $request->all();
+    	$post = Auth::user()->id;
+
+    	$pathToStore = public_path('images');
+    	
+    	if ($request->hasFile('image')) 
+    	{
+    		$file = $request->file('image');
+    		$rules = array('file' => 'required|mimes:jpg,png,gif,jpeg');
+    		$validator = \Illuminate\Support\Facades\Validator::make(array('file'=> $file), $rules);
+
+    		if($validator->passes()) 
+    		{
+    			$original = $file->getClientOriginalName();
+    			$extension = $file->getClientOriginalExtension();
+    			$filename = file_get_contents($request->file('image'));
+
+    			$pic = sha1($filename . time()) . '.' . $extension;
+    			$local_upload = $file->move($pathToStore, $pic);
+    		}
+    	}
+    	$checkUpdate = $this->userInterface->uploadUserImage($post, $pic);
+    	if($checkUpdate==1)
+    	{
+    		return redirect('profile')->with('upload_success','Profile picture successfully set!!');
+    	}
+    	else
+    	{
+    		return redirect('profile')->with('upload_error','Unable to upload image!!');
+    	}
+
     }
 }

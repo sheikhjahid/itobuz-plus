@@ -30,9 +30,14 @@
       <div class="b-t">
         <div class="nav-fold">
               <span class="clear hidden-folded p-x">
-               <small class="text-muted">User</small>
+                @if(Auth::user()->image=='')
+                <img src="{{ URL::asset('images/default_dp.jpg') }}" style="width:30px;height:30px" class="w-40 img-circle" >
+                @else
+                <img src="{{ URL::asset('images/'.Auth::user()->image) }}" style="width:30px;height:30px" class="w-40 img-circle" >
+                @endif
+               <small class="text-muted">{{Auth::user()->name}}</small>
                 <small class="block text-muted"><i class="fa fa-circle text-success"></i> online</small>
-               <a href="#">
+               <a href="{{ url('logout') }}">
                 <span class="logout-text"><i class="fa fa-sign-out"></i>Logout</span>
                </a>
               </span>
@@ -58,24 +63,26 @@
           
             <ul class="nav navbar-nav ml-auto flex-row">
               <li class="nav-item dropdown">
-                <a class="nav-link p-0 clear" href="#" data-toggle="dropdown">      
-                   <div class="avatar w-32"> 
-                  <span class="profile-name">
-                    User</span>
+                <a class="nav-link p-0 clear" href="#" data-toggle="dropdown"> 
+                <i class="fa fa-circle text-success"></i>
+                @if(Auth::user()->image=='')
+                <img src="{{ URL::asset('images/default_dp.jpg') }}" style="width:30px;height:30px" class="w-40 img-circle" >
+                @else
+                <img src="{{ URL::asset('images/'.Auth::user()->image) }}" style="width:30px;height:30px" class="w-40 img-circle" >
+                @endif
+                  <span class="profile-name"><b>{{ Auth::user()->name }}</b></span>
                   <b class="caret"></b>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="{{ url('profile')}}"><b>Profile</b></a></li>
+                    <li><a href="{{ url('logout') }}"><b>Logout</b></a></li>
                   </ul>
                     <i class="on b-white bottom"></i>
-                  </div>
                 </a>
                 <div ui-include="'../views/blocks/dropdown.user.html'"></div>
               </li>
               <li class="nav-item dropdown pos-stc-xs">
                 <div ui-include="'../views/blocks/dropdown.notification.html'"></div>
               </li>
-              
               <li class="nav-item hidden-md-up">
                 <a class="nav-link pl-2" data-toggle="collapse" data-target="#collapse">
                   <i class="material-icons">&#xe5d4;</i>

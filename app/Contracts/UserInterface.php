@@ -10,4 +10,6 @@ interface UserInterface
 	public function deleteUserDataBYId($id);
 	public function recoverUserDataById($id);
 	public function searchUserData($request);
+	public function getProfileData();
+	public function uploadUserImage($id, $image);
 }

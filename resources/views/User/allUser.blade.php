@@ -57,18 +57,26 @@
         <thead>
           <tr>
             <th style="width:15%">Name</th>
+            <th style="width:-1%"></th>
             <th style="width:16%">Email</th>
             <th style="width:2%">Address</th>
             <th style="width:5%">Contact</th>
             <th style="width:13%">Team</th>
             <th style="width:12%">Role</th>
             <th style="width:7%">Status</th>
-            <th  style="width:66%">Action</th>
+            <th style="width:66%">Action</th>
           </tr>
         </thead>
         	@foreach($userdata as $data)
         <tbody>
         	<td>{{ $data->name }}</td>
+            <td>    
+            @if($data->image=='')
+            <img src="{{ URL::asset('images/default_dp.jpg') }}" style="width:30px;height:30px" class="w-40 img-circle" >
+            @else
+            <img src="{{ URL::asset('images/'.$data->image) }}" style="width:30px;height:30px" class="w-40 img-circle" >
+            @endif
+            </td>
         	<td>{{ $data->email }}</td>
         	<td>{{ $data->address }}</td>
         	<td>{{ $data->phone }}</td>

@@ -15,11 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', function()
+
+
+Route::get('login',function()
 {
-	return view('dashboard');
+	return view('auth.login');
 });
 
+Route::group(['middleware'=>'auth'], function()
+{
+Route::get('dashboard', function(){return view('dashboard');});
 Route::get('users', 'UserController@getAllUsers');
 Route::get('users/{id}','UserController@getUserById');
 Route::get('edit-users/{id}','UserController@editUserById');
@@ -27,6 +32,11 @@ Route::post('update-users/{id}','UserController@updataUserById');
 Route::get('delete-users/{id}','UserController@deleteUserById');
 Route::get('recover-users/{id}','UserController@recoverUserById');
 Route::post('search-users','UserController@searchUser');
+Route::post('uploadPicture','UserController@uploadImage');
+Route::get('profile','UserController@userProfile');
+Route::get('logout','Auth\LoginController@logout');
+});
+
 
 Auth::routes();
 
