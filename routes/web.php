@@ -26,6 +26,7 @@ Route::get('edit-users/{id}','UserController@editUserById');
 Route::post('update-users/{id}','UserController@updataUserById');
 Route::get('delete-users/{id}','UserController@deleteUserById');
 Route::get('recover-users/{id}','UserController@recoverUserById');
+Route::post('search-users','UserController@searchUser');
 
 Auth::routes();
 

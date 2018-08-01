@@ -86,4 +86,17 @@ class UserRepository implements UserInterface
 			return $e->getMessage();
 		}
 	}
+
+	public function searchUserData($request)
+	{
+		try
+		{
+			$getSearchData = $this->user->where('name','LIKE',"%{$request}%")->orWhere('email','LIKE',"%{$request}%")->orWhere('phone','LIKE',"%{$request}%")->orWhere('address','LIKE',"%{$request}%")->with('team','role')->get();
+			return $getSearchData;
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
 } 

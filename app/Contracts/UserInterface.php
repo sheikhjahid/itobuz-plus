@@ -9,4 +9,5 @@ interface UserInterface
 	public function updateUserDataById($id, $request);
 	public function deleteUserDataBYId($id);
 	public function recoverUserDataById($id);
+	public function searchUserData($request);
 }

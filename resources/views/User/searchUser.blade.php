@@ -2,48 +2,10 @@
 
 @section('content')
 
-<div class="box">
-    <div class="box-header">
-      <h2>User Table</h2>
-      @include('Search.searchUserForm')
-    </div>
-    @if(session()->has('update_success'))
-        <div class="alert alert-success">
-            {{ session()->get('update_success') }}
-        </div>
-        @endif
-        @if(session()->has('update_failure'))
-        <div class="alert alert-success">
-            {{ session()->get('update_failure') }}
-        </div>
-        @endif
-        @if(session()->has('delete_success'))
-        <div class="alert alert-success">
-            {{ session()->get('delete_success') }}
-        </div>
-        @endif
-        @if(session()->has('delete_failure'))
-        <div class="alert alert-success">
-            {{ session()->get('delete_failure') }}
-        </div>
-        @endif
-        @if(session()->has('recovery_success'))
-        <div class="alert alert-success">
-            {{ session()->get('recovery_success') }}
-        </div>
-        @endif
-        @if(session()->has('recovery_failure'))
-        <div class="alert alert-success">
-            {{ session()->get('recovery_failure') }}
-        </div>
-        @endif
-        @if(session()->has('search_failure'))
-        <div class="alert alert-success">
-            {{ session()->get('search_failure') }}
-        </div>
-        @endif
 
-    <div class="table-responsive">
+<div class="box">
+
+<div class="table-responsive">
       <table ui-jp="dataTable" ui-options="{
           sAjaxSource: 'api/datatable.json',
           aoColumns: [
@@ -66,7 +28,7 @@
             <th  style="width:66%">Action</th>
           </tr>
         </thead>
-        	@foreach($userdata as $data)
+        @foreach($userdata as $data)
         <tbody>
         	<td>{{ $data->name }}</td>
         	<td>{{ $data->email }}</td>
@@ -100,6 +62,5 @@
         	@endforeach
       </table>
     </div>
-  </div>
-
+</div>
 @stop

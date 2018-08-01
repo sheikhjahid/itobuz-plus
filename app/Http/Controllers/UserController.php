@@ -82,4 +82,19 @@ class UserController extends Controller
     		return redirect('users')->with('recovery_failure','Unable to recover userdata!!');
     	}
     }
+
+    public function searchUser(Request $request)
+    {
+        $key = $request->key;
+    	$checkSearchData = $this->userInterface->searchUserData($key);
+
+    	if($checkSearchData==false)
+    	{
+    		return redirect('users')->with('search_failure','Unable to find any data for this key value!!');
+    	}
+    	else
+    	{
+    		return view('User.searchUser')->with('userdata',$checkSearchData);
+    	}
+    }
 }
