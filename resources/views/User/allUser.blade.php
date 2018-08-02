@@ -5,8 +5,19 @@
 <div class="box">
     <div class="box-header">
       <h2>User Table</h2>
+      <a href="{{url('create-user-form')}}"><button class="btn btn-default" id="add_user">Add User <i class="fa fa-plus"></i></button></a>
       @include('Search.searchUserForm')
     </div>
+    @if(session()->has('create_success'))
+        <div class="alert alert-success">
+            {{ session()->get('create_success') }}
+        </div>
+        @endif
+        @if(session()->has('create_failure'))
+        <div class="alert alert-success">
+            {{ session()->get('create_failure') }}
+        </div>
+        @endif
     @if(session()->has('update_success'))
         <div class="alert alert-success">
             {{ session()->get('update_success') }}
@@ -81,7 +92,7 @@
         	<td>{{ $data->address }}</td>
         	<td>{{ $data->phone }}</td>
         	<td>{{ $data->team->name }}</td>
-        	<td>{{ $data->role->name }}</td>
+        	<td></td>
         	@if($data->status==1)
         	<td>{{ "Active" }}</td>
         	 @else

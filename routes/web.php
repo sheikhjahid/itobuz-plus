@@ -25,6 +25,8 @@ Route::get('login',function()
 Route::group(['middleware'=>'auth'], function()
 {
 Route::get('dashboard', function(){return view('dashboard');});
+Route::get('create-user-form','UserController@createForm');
+Route::post('create-user','UserController@createUser');
 Route::get('users', 'UserController@getAllUsers');
 Route::get('users/{id}','UserController@getUserById');
 Route::get('edit-users/{id}','UserController@editUserById');
@@ -34,6 +36,15 @@ Route::get('recover-users/{id}','UserController@recoverUserById');
 Route::post('search-users','UserController@searchUser');
 Route::post('uploadPicture','UserController@uploadImage');
 Route::get('profile','UserController@userProfile');
+
+Route::get('create-team-form','TeamController@createForm');
+Route::post('create-teams','TeamController@createTeam');
+Route::get('teams','TeamController@getAllTeams');
+Route::get('teams/{id}','TeamController@getTeamById');
+Route::get('edit-teams/{id}','TeamController@editTeamById');
+Route::post('update-teams/{id}','TeamController@updateTeamById');
+Route::get('delete-teams/{id}','TeamController@deleteTeamById');
+Route::get('recover-teams/{id}','TeamController@recoverTeamById');
 Route::get('logout','Auth\LoginController@logout');
 });
 

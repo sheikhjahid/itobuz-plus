@@ -50,7 +50,7 @@
                 <i class="fa fa-linkedin cyan-600"></i>
               </a>
             </div>
-            <button class="btn btn-sm warn btn-rounded m-b" data-toggle="modal" data-target="#upload">Upload</button>
+          <button class="btn btn-primary" data-toggle="modal"  data-target="#upload">Upload Picture</button>
             @include('Upload.uploadPicture')
           </div>
         </div>

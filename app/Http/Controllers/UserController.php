@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\CreateUserRequest;
 use App\Contracts\UserInterface;
 use App\Contracts\TeamInterface;
 use App\Contracts\RoleInterface;
-use Auth;
+use Auth,Hash;
 
 class UserController extends Controller
 {
@@ -20,6 +21,30 @@ class UserController extends Controller
     	$this->userInterface = $userInterface;
     	$this->teamInterface = $teamInterface;
     	$this->roleInterface = $roleInterface;
+    }
+
+    public function createForm()
+    {
+         $teamData = $this->teamInterface->getTeamData();
+        $roleData = $this->roleInterface->getRoleData();
+        return view('User.createUser')->with([
+            'teamdata' => $teamData,
+            'roledata' => $roleData
+        ]);
+    } 
+    public function createUser(CreateUserRequest $request)
+    {
+       $requestData = $request->all();
+       $requestData['password'] = Hash::make($request->password);
+       $checkCreatedData = $this->userInterface->insertUserData($requestData);
+       if($checkCreatedData)
+       {
+        return redirect('users')->with('create_success','User created successfully!!');
+       }
+       else
+       {
+        return redirect('users')->with('create_failure','Unable to create user!!');
+       }
     }
 
     public function getAllUsers()

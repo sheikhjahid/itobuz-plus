@@ -1,0 +1,22 @@
+#add_user
+{
+	position:absolute;
+	top:14%;
+	left:12%;
+}
+#add_team
+{
+	position: absolute;
+    top: 12%;
+    left: 12%;
+}
+#password
+{
+	position:absolute;
+	left:35%;
+}
+#confirm_password
+{
+	position:absolute;
+	left:35%;	
+}

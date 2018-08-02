@@ -17,6 +17,7 @@
   <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
   
   <!-- style -->
+  <link rel="stylesheet" href="{{ URL::asset('css/custom.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ URL::asset('css/animate.min.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ URL::asset('font-awesome/css/font-awesome.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ URL::asset('css/glyphicons.css') }}" type="text/css" />
@@ -27,5 +28,4 @@
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}" type="text/css" />
   <!-- endbuild -->
   <link rel="stylesheet" href="{{ URL::asset('css/font.css') }}" type="text/css" />
-  <link rel="stylesheet" href="{{ URL::asset('css/custom.css') }}" type="text/css" />
 </head>

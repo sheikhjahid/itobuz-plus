@@ -21,7 +21,10 @@
                 </li>
                  <li class="submenu">
                   <a href="{{ url('/users') }}">
-                     <span class="user-icon"><i class="fa fa-users"></i> Users</span>
+                     <span class="user-icon"><i class="fa fa-user"></i> Users</span>
+                  </a>
+                  <a href="{{ url('/teams') }}">
+                    <span class="team-icon"><i class="fa fa-users"></i> Teams</span>
                   </a>
                 </li>
               </ul>

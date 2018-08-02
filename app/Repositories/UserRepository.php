@@ -20,6 +20,22 @@ class UserRepository implements UserInterface
 		$this->role = $role;
 	}
 
+	public function insertUserData($request)
+	{
+		DB::beginTransaction();
+		try
+		{
+			$createUser = $this->user->create($request);
+			DB::commit();
+			return $createUser;
+		}
+		catch(\Exception $e)
+		{
+			DB::rollback();
+			return $e->getMessage();
+		}
+	}
+
 	public function getUserData()
 	{
 		try
