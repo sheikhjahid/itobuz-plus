@@ -10,4 +10,5 @@ interface TeamInterface
 	public function deleteTeamDataById($id);
 	public function recoverTeamDataById($id);
 	public function createTeamData($request);
+	public function searchTeamUserData($id, $request);
 }

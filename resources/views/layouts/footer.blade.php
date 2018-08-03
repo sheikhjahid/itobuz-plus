@@ -6,17 +6,11 @@
 <script src="{{URL::asset('js/bootstrap.js')}}"></script>
 <script src="{{URL::asset('js/pace.min.js')}}"></script>
 <script src="{{URL::asset('js/config.lazyload.js')}}"></script>
-<script src="{{URL::asset('js/bootstrap-filestyle.js')}}"></script>
-<script src="{{URL::asset('js/bootstrap-datetimepicker.js')}}"></script>
 <script src="{{URL::asset('js/custom.js')}}"></script>
-<script src="{{URL::asset('js/jquery.ui.js')}}"></script>
-<!-- Bootstrap -->
-<!-- <script src="{{URL::asset('js/bootstrap.js')}}"></script> -->
-<!-- core -->
 <script src="{{URL::asset('js/jquery-1.11.1.min.js')}}"></script>
 <script src="{{URL::asset('js/jquery.min.js')}}"></script>
 <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
-<script src="{{URL::asset('js/jquery.datetimepicker.js')}}"></script>
+<script src="{{URL::asset('js/custom.js')}}"></script>
 <!-- endbuild -->
 </body>
 </html>

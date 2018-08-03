@@ -14,8 +14,7 @@
   <meta name="apple-mobile-web-app-title" content="Flatkit">
   <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
-  
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- style -->
   <link rel="stylesheet" href="{{ URL::asset('css/custom.css') }}" type="text/css" />
   <link rel="stylesheet" href="{{ URL::asset('css/animate.min.css') }}" type="text/css" />

@@ -90,4 +90,24 @@ class TeamController extends Controller
     		return redirect('teams')->with('create_failure','Unable to create team data!!');
     	}
     }
+
+    public function searchAssociatedUser(Request $request)
+    {
+      try
+      {
+        if($request->ajax())
+        {
+            $name = $request->get('name');
+            $id = $request->get('id');
+
+            $searchUser = $this->teamInterface->searchTeamUserData($id, $name);
+
+            return $searchUser;
+        }
+      }
+    catch(\Exception $e)
+    {
+        return "No data found!!";
+    }
+}
 }

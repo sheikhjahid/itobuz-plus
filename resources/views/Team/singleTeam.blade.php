@@ -30,6 +30,7 @@
 
     <div class="table-responsive">
       <center><h2>Associated User for {{ $teamdata->name }}</h2></center>
+        @include('Search.searchTeamUser')
       <table ui-jp="dataTable" ui-options="{
           sAjaxSource: 'api/datatable.json',
           aoColumns: [
@@ -49,8 +50,9 @@
             <th style="width:10%">Status</th>
           </tr>
         </thead>
+        <tbody id="search_user">
           @foreach($teamdata->user as $user)
-        <tbody>
+          <tr>
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
           <td>{{ $user->phone }}</td>
@@ -61,6 +63,7 @@
            <td>{{ "Inactive" }}</td>
             @endif
         </tbody>
+      </tr>
           @endforeach
       </table>
     </div>

@@ -45,6 +45,7 @@ Route::get('edit-teams/{id}','TeamController@editTeamById');
 Route::post('update-teams/{id}','TeamController@updateTeamById');
 Route::get('delete-teams/{id}','TeamController@deleteTeamById');
 Route::get('recover-teams/{id}','TeamController@recoverTeamById');
+Route::post('search-team-user','TeamController@searchAssociatedUser');
 Route::get('logout','Auth\LoginController@logout');
 });
 

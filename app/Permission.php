@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Zizaco\Entrust\EntrustRole;
-class Permission extends EntrustRole
+
+class Permission extends Model
 {
-	use SoftDeletes;
-    protected $fillable=['name','display_name','description'];
+    protected $fillable=['description'];
+
+    public function role()
+    {
+    	return $this->belongsToMany(\App\Role::class,'permission_roles','permission_id','role_id');
+    }
 }

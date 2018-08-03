@@ -93,7 +93,6 @@
         </tbody>
         	@endforeach
       </table>
-        {{$teamdata->links()}}
     </div>
   </div>
 @stop

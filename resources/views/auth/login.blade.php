@@ -24,7 +24,7 @@
         </div>
         <div class="md-form-group float-label">
            <b>{!! Form::label('password','Password') !!}</b>
-                 {!! Form::password ('password',['class'=>'md-input','type'=>'password']) !!}
+                 {!! Form::password ('password',['class'=>'md-input','type'=>'password','id'=>'login_password']) !!}
 
         </div>      
 

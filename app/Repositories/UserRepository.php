@@ -26,6 +26,10 @@ class UserRepository implements UserInterface
 		try
 		{
 			$createUser = $this->user->create($request);
+			if(!empty($createUser))
+			{
+				$createUser->role()->attach($request['role_id']);
+			}
 			DB::commit();
 			return $createUser;
 		}

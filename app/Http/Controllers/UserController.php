@@ -50,6 +50,7 @@ class UserController extends Controller
     public function getAllUsers()
     {
     	$userData = $this->userInterface->getUserData();
+        
     	return view('User.allUser')->with('userdata',$userData);
     }
 

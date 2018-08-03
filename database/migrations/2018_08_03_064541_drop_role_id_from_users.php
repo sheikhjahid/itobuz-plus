@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropRoleIdFromUsersTable extends Migration
+class DropRoleIdFromUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -26,13 +26,12 @@ class DropRoleIdFromUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) 
-        {
+        Schema::table('users', function (Blueprint $table) {
             $table->integer('role_id')->unsigned()->nullable();
             $table->foreign('role_id')
                   ->references('id')
                   ->on('roles')
-                  ->onDelete('cascade');
+                  ->onDelete('cascade');  
         });
     }
 }

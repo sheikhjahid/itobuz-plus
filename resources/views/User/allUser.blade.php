@@ -92,7 +92,9 @@
         	<td>{{ $data->address }}</td>
         	<td>{{ $data->phone }}</td>
         	<td>{{ $data->team->name }}</td>
-        	<td></td>
+            @foreach($data->role as $role)
+        	<td>{{ $role->name }}</td>
+            @endforeach
         	@if($data->status==1)
         	<td>{{ "Active" }}</td>
         	 @else

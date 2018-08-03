@@ -2,20 +2,23 @@
 namespace App\Repositories;
 use App\Contracts\TeamInterface;
 use App\Team;
+use App\User;
 use DB;
 class TeamRepository implements TeamInterface
 {
 	protected $team;
-	public function __construct(Team $team)
+	protected $user;
+	public function __construct(Team $team, User $user)
 	{
 		$this->team = $team;
+		$this->user = $user;
 	}
 
 	public function getTeamData()
 	{
 		try
 		{
-			return $this->team->paginate(5);
+			return $this->team->all();
 		}
 		catch(\Exception $e)
 		{
@@ -94,6 +97,25 @@ class TeamRepository implements TeamInterface
 		{
 			DB::rollback();
 			return $e->getMessage();
+		}
+	}
+
+	public function searchTeamUserData($id, $request)
+	{
+		DB::beginTransaction();
+		try
+		{
+			$getTeam = $this->team->with('user')->find($id);
+			foreach($getTeam->user as $user)
+			{
+			  $searchUser = $this->user->where('name','LIKE',"%{$request}%")->get();
+			}
+			return $searchUser;
+		}
+		catch(\Exception $e)
+		{
+			DB::rollback();
+			return $re->getMessage();
 		}
 	}
 }
