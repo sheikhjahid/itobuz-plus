@@ -107,7 +107,7 @@ class TeamController extends Controller
       }
     catch(\Exception $e)
     {
-        return "No data found!!";
+        return response("No data found!!");
     }
 }
 }

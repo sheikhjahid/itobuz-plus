@@ -27,19 +27,19 @@ jQuery(document).ready(function()
 
         success: function (response) 
         {
-        	var trHTML = '';
-        	jQuery('#search_user').html(response);
+          var trHTML = '';
+        	jQuery('#search').html(response);
         	$.each(response, function (key,value) {
         		trHTML += 
         		'<tr><td>' + value.name + 
         		'</td><td>' + value.email + 
         		'</td><td>' + value.phone + 
         		'</td><td>' + value.address + 
-        		'</td><td>' + value.status + 
+        		'</td><td>' + value.created_at + 
         		'</td></tr>';     
         	});
 
-        	$('#search_user').append(trHTML);
+        	$('#search').append(trHTML);
         }
   });
 });
