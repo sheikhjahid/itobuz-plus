@@ -96,9 +96,9 @@
         	<td>{{ $role->name }}</td>
             @endforeach
         	@if($data->status==1)
-        	<td>{{ "Active" }}</td>
+        	<td><span class="label label-danger">Active</span></td>
         	 @else
-        	 <td>{{ "Inactive" }}</td>
+        	 <td><span class="label label-danger">Inactive</span></td>
         	  @endif
         	<td style="width:75%">
         		<a href="{{ url('/users',[$data->id]) }}">

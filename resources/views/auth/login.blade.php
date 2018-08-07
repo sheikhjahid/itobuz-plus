@@ -23,13 +23,14 @@
                  {!! Form::email ('email',null,['class'=>'md-input']) !!}
         </div>
         <div class="md-form-group float-label">
-           <b>{!! Form::label('password','Password') !!}</b>
+           <b>{!! Form::label('password','Password',['class'=>'password-label']) !!}</b>
                  {!! Form::password ('password',['class'=>'md-input','type'=>'password','id'=>'login_password']) !!}
 
         </div>      
 
        <b>{!! Form::button('Login',['class' => 'btn primary btn-block p-x-md','type' => 'submit','style' => 'width:230px' ]) !!}</b>
-
+     </br>
+       <a class="recovery-link" href="{{url('recover-password')}}">Forgot password?</a>
       </form>
   </div>
 </div>

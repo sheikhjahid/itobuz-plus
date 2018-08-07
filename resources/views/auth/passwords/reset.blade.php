@@ -1,65 +1,44 @@
-@extends('layouts.app')
+@include('layouts.header')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="center-block w-xxl w-auto-xs p-y-md">
+    <div class="navbar">
+      <div class="pull-center">
+        <div ui-include="'../views/blocks/navbar.brand.html'"></div>
+      </div>
     </div>
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+      <div class="m-b text-sm">
+       <img src="{{ URL::asset('images/itobuz.png') }}" style="width:60px"><b> Itobuz Technologies Office+</b>
+      </div>    
+    <div class="box">  
+      @if ( count( $errors ) > 0 )
+              @foreach ($errors->all() as $error)
+              <div class="alert alert-warning">{{ $error }}</div>
+              @endforeach
+              @endif
+       {!!Form::open(['method'=>'POST', 'url' =>['recover']])!!}
+
+        <div class="md-form-group float-label">
+        <b>{!! Form::label('Email','Email') !!}</b>
+                 {!! Form::email ('email',null,['class'=>'md-input']) !!}
+        </div>
+        <div class="md-form-group float-label">
+           <b>{!! Form::label('password','Password',['class'=>'password-label']) !!}</b>
+                 {!! Form::password ('password',['class'=>'md-input','type'=>'password','id'=>'login_password']) !!}
+
+        </div>      
+
+        <div class="md-form-group float-label">
+           <b>{!! Form::label('confirm_password','Confirm-Password',['class'=>'password-label']) !!}</b>
+                 {!! Form::password ('confirm_password',['class'=>'md-input','type'=>'password','id'=>'login_password']) !!}
+
+        </div>      
+
+       <b>{!! Form::button('Recover',['class' => 'btn primary btn-block p-x-md','type' => 'submit','style' => 'width:230px' ]) !!}</b>
+     </br>
+      </form>
+  </div>
 </div>
-@endsection
+<center><a href="http://itobuz.com/">  www.itobuz.com  </a></center>
+
+@include('layouts.footer')

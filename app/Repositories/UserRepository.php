@@ -150,4 +150,30 @@ class UserRepository implements UserInterface
 			return $e->getMessage();
 		}
 	}
+
+	public function recoveryPassword($email, $request)
+	{
+		try
+		{
+			$userdata = $this->user->where('email',$email)->update($request);
+			return $userdata;
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function findRecoveredData($email)
+	{
+		try
+		{
+			$userdata = $this->user->where('email',$email)->get();
+			return $userdata;
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
 } 

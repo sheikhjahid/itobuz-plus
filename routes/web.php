@@ -22,6 +22,9 @@ Route::get('login',function()
 	return view('auth.login');
 });
 
+Route::get('recover-password','Auth\LoginController@recoveryForm');
+Route::post('recover','Auth\LoginController@recoverPassword');
+
 Route::group(['middleware'=>'auth'], function()
 {
 Route::get('dashboard', function(){return view('dashboard');});

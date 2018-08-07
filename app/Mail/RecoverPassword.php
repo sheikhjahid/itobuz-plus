@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Crypt;
-class SendUsernamePassword extends Mailable
+class RecoverPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,14 +29,14 @@ class SendUsernamePassword extends Mailable
      */
     public function build()
     {
-        $name = 'Administrator';
-        $subject = 'Registration Complete!!';
-        return $this->view('User.registrationComplete')
+         $name = 'Administrator';
+        $subject = 'Password Recovered!!';
+        return $this->view('User.recoverPassword')
         ->from(env('MAIL_FROM_ADDRESS'), $name)
         ->subject($subject)
         ->with([
-                'username'     => $this->user->email,
-                'password'     => Crypt::decrypt($this->user->password),
+                'username'=>$this->user->email,
+                'password'=>Crypt::decrypt($this->user->password),
                ]);
     }
 }

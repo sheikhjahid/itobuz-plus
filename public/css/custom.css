@@ -20,9 +20,7 @@
 	position:absolute;
 	left:35%;	
 }
-#login_password
+.recovery-link
 {
-	position:absolute;
-	left:35%;
-	top:12%;
+	color:red;
 }
