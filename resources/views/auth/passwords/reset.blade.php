@@ -1,5 +1,16 @@
 @include('layouts.header')
 
+@if(session()->has('password_recover_success'))
+<div class="alert alert-success">
+  {{ session()->get('password_recover_success') }}
+</div>
+@endif
+@if(session()->has('password_recover_failure'))
+<div class="alert alert-success">
+  {{ session()->get('password_recover_failure') }}
+</div>
+@endif
+
 <div class="center-block w-xxl w-auto-xs p-y-md">
     <div class="navbar">
       <div class="pull-center">

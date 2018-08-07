@@ -62,7 +62,7 @@ class LoginController extends Controller
        $getPassword = $this->userInterface->recoveryPassword($email,$requestData);
        if($getPassword==1)
        {
-         $getUserdata = $this->userInterface->findRecoveredData($email);
+         $getUserdata = $this->userInterface->findRecoveredData($email);   
          Mail::to($email)->send(new RecoverPassword($getUserdata));
          return redirect('recover-password')->with('password_recover_success','Your password has been successfully reset. Please check your inbox!!');
        }
