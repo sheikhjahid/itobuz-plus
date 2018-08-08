@@ -14,5 +14,8 @@ interface UserInterface
 	public function getProfileData();
 	public function uploadUserImage($id, $image);
 	public function recoveryPassword($email, $request);
-	public function findRecoveredData($email);
+
+
+
+	public function findEmail();
 }

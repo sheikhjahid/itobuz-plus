@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Crypt;
+// use Crypt;
 class SendUsernamePassword extends Mailable
 {
     use Queueable, SerializesModels;
@@ -17,9 +17,11 @@ class SendUsernamePassword extends Mailable
      * @return void
      */
     protected $user;
-    public function __construct($user)
+    public $password;
+    public function __construct($user,$password)
     {
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -35,8 +37,9 @@ class SendUsernamePassword extends Mailable
         ->from(env('MAIL_FROM_ADDRESS'), $name)
         ->subject($subject)
         ->with([
+                'name'         => $this->user->name,
                 'username'     => $this->user->email,
-                'password'     => Crypt::decrypt($this->user->password),
+                'password'     => $this->password,
                ]);
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Contracts\UserInterface;
 use App\Contracts\TeamInterface;
 use App\Contracts\RoleInterface;
-use Auth,Crypt;
+use Auth,Hash;
 use Mail;
 use App\Mail\TestMail;
 use App\Mail\SendUsernamePassword;
@@ -38,12 +38,12 @@ class UserController extends Controller
     public function createUser(CreateUserRequest $request)
     {
        $requestData = $request->all();
-       $requestData['password'] = Crypt::encrypt($request->password);
+       $requestData['password'] = Hash::make($request->password);
        $requestData['email'] = $request->email;
        $checkCreatedData = $this->userInterface->insertUserData($requestData);
        if($checkCreatedData)
        {
-        Mail::to([$request])->send(new SendUsernamePassword($checkCreatedData));
+        Mail::to([$request])->send(new SendUsernamePassword($checkCreatedData,$request->password));
         return redirect('users')->with('create_success','User created successfully!!');
        }
        else
@@ -168,5 +168,15 @@ class UserController extends Controller
     	{
     		return redirect('profile')->with('upload_error','Unable to upload image!!');
     	}
+    }
+
+    public function mailForm()
+    {
+        $userData = $this->userInterface->findEmail();
+        return view('emailTest')->with('userdata',$userData);
+    }
+    public function sendMail(Request $request)
+    {
+        Mail::to($request->email)->send(new TestMail);
     }
 }

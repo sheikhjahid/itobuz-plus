@@ -16,10 +16,12 @@ class RecoverPassword extends Mailable
      *
      * @return void
      */
-    protected $user;
-    public function __construct($user)
+    public $user;
+    public $password;
+    public function __construct($user,$password)
     {
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -29,14 +31,14 @@ class RecoverPassword extends Mailable
      */
     public function build()
     {
-         $name = 'Administrator';
+        $name = 'Administrator';
         $subject = 'Password Recovered!!';
         return $this->view('User.recoverPassword')
         ->from(env('MAIL_FROM_ADDRESS'), $name)
         ->subject($subject)
         ->with([
                 'username'=>$this->user->email,
-                'password'=>Crypt::decrypt($this->user->password),
+                'password'=>$this->password,
                ]);
     }
 }

@@ -74,7 +74,7 @@
             <th style="width:5%">Contact</th>
             <th style="width:13%">Team</th>
             <th style="width:12%">Role</th>
-            <th style="width:7%">Status</th>
+            <th style="width:0%">Status</th>
             <th style="width:66%">Action</th>
           </tr>
         </thead>

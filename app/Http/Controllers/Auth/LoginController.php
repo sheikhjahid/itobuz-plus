@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth,Crypt,Mail;
+use Auth,Hash,Mail;
 use App\User;
 use App\Http\Requests\RecoveryRequest;
 use App\Contracts\UserInterface;
@@ -57,13 +57,12 @@ class LoginController extends Controller
 
     public function recoverPassword(RecoveryRequest $request)
     {
-       $email = [$request->email];
-       $requestData['password'] = Crypt::encrypt($request->password); 
-       $getPassword = $this->userInterface->recoveryPassword($email,$requestData);
-       if($getPassword==1)
-       {
-         $getUserdata = $this->userInterface->findRecoveredData($email);   
-         Mail::to($email)->send(new RecoverPassword($getUserdata));
+       $email = $request->email;
+       $requestData['password'] = Hash::make($request->password);
+       $getPassword = $this->userInterface->recoveryPassword($email,$requestData);      
+       if($getPassword)
+       {   
+         Mail::to($email)->send(new RecoverPassword($getPassword,$request->password));
          return redirect('recover-password')->with('password_recover_success','Your password has been successfully reset. Please check your inbox!!');
        }
        else

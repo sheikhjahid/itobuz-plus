@@ -156,7 +156,10 @@ class UserRepository implements UserInterface
 		try
 		{
 			$userdata = $this->user->where('email',$email)->update($request);
-			return $userdata;
+			if($userdata==1)
+			{
+				return $this->user->where('email',$email)->first();
+			}
 		}
 		catch(\Exception $e)
 		{
@@ -164,11 +167,11 @@ class UserRepository implements UserInterface
 		}
 	}
 
-	public function findRecoveredData($email)
+	public function findEmail()
 	{
 		try
 		{
-			$userdata = $this->user->where('email',$email)->get();
+			$userdata = $this->user->select('email')->where('team_id',1)->get();
 			return $userdata;
 		}
 		catch(\Exception $e)

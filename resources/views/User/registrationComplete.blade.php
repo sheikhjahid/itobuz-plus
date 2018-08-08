@@ -64,16 +64,18 @@
 
                                         <p style="line-height: 24px; margin-bottom:15px;">
 
-                                            Dear User,
+                                            Dear {{ $name }},
 
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
                                             Greetings from Itobuz Technologies, your registration is complete!!
                                         </p>
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            You can access your account at any point using the link below. 
+                                            You can access your account at any point using the link below.
+                                            <p> 
                                             Username : {{ $username }}
                                             Password : {{ $password }}
+                                            </p>
                                         </p>
                                         <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
