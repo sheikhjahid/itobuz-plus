@@ -43,4 +43,42 @@ jQuery(document).ready(function()
         }
   });
 });
+
+       jQuery('#search_role_user').submit(function(e){
+
+    e.preventDefault();
+
+    var name = document.getElementById('name').value;
+    var id = document.getElementById('role').value;
+   
+    $value=jQuery(this).val();
+    console.log(name);
+    jQuery.ajax({
+
+      type : 'post',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url :  'http://localhost/office+/public/search-role-user',
+      data: {'name':name,'id':id},
+
+        success: function (response) 
+        {
+          var trHTML = '';
+          jQuery('#user_data').html(response);
+          $.each(response, function (key,value) {
+            trHTML += 
+            '<tr><td>' + value.name + 
+            '</td><td>' + value.email + 
+            '</td><td>' + value.phone + 
+            '</td><td>' + value.address + 
+            '</td><td>' + value.created_at + 
+            '</td></tr>';     
+          });
+
+          $('#user_data').append(trHTML);
+        }
+  });
+});
+
 });

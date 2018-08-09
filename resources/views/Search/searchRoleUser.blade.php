@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class='col-sm-6'>
-                <input type="hidden" value="{{$teamdata->id}}" id="team"> 
-                <form id="search_user">
+                <input type="hidden" value="{{$roledata->id}}" id="role"> 
+                <form id="search_role_user">
                 {!!Form::label('name','Name:',['style'=>'position:absolute;left:123%;bottom:-57%'])!!}
                 {!!Form::text('name',null,['style'=>'position:absolute;left:132%;bottom:350%','id'=>'name','placeholder'=>'Search user by name..'])!!}
 

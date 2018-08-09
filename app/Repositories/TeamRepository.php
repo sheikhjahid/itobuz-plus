@@ -102,7 +102,6 @@ class TeamRepository implements TeamInterface
 
 	public function searchTeamUserData($id, $request)
 	{
-		DB::beginTransaction();
 		try
 		{
 			$getTeam = $this->team->with('user')->find($id);
@@ -114,7 +113,6 @@ class TeamRepository implements TeamInterface
 		}
 		catch(\Exception $e)
 		{
-			DB::rollback();
 			return $re->getMessage();
 		}
 	}

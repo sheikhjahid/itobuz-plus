@@ -99,10 +99,15 @@ class TeamController extends Controller
         {
             $name = $request->get('name');
             $id = $request->get('id');
-
             $searchUser = $this->teamInterface->searchTeamUserData($id, $name);
-
-            return $searchUser;
+            if(count($searchUser) >= 1)
+            {
+                return $searchUser;
+            }
+            else
+            {
+                return "No data found!!";
+            }
         }
       }
     catch(\Exception $e)

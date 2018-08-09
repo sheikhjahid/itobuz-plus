@@ -177,6 +177,13 @@ class UserController extends Controller
     }
     public function sendMail(Request $request)
     {
-        Mail::to($request->email)->send(new TestMail);
+        $i=0;
+        $email = $request->email;
+        foreach($email as $e)
+        {
+            $data[$i] = $e;
+            Mail::to($data[$i])->send(new TestMail);
+            $i++;
+        }
     }
 }

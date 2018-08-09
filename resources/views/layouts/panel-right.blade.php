@@ -26,6 +26,9 @@
                   <a href="{{ url('/teams') }}">
                     <span class="team-icon"><i class="fa fa-users"></i> Teams</span>
                   </a>
+                   <a href="{{ url('/roles') }}">
+                    <span class="role-icon"><i class="fa fa-circle"></i> Roles</span>
+                  </a>
                 </li>
               </ul>
           </nav>

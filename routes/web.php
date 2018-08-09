@@ -49,6 +49,9 @@ Route::post('update-teams/{id}','TeamController@updateTeamById');
 Route::get('delete-teams/{id}','TeamController@deleteTeamById');
 Route::get('recover-teams/{id}','TeamController@recoverTeamById');
 Route::post('search-team-user','TeamController@searchAssociatedUser');
+Route::get('roles','RoleController@getAllRoles');
+Route::get('roles/{id}','RoleController@getRoleById');
+Route::post('search-role-user','RoleController@searchRoleUser');
 Route::get('logout','Auth\LoginController@logout');
 
 Route::get('test-mail','UserController@mailForm');
