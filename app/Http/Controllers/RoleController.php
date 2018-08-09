@@ -47,7 +47,6 @@ class RoleController extends Controller
         catch(\Exception $e)
         {
             return $e->getMessage();
-        }
-    	
+        }	
     }
 }

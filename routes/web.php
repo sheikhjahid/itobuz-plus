@@ -52,6 +52,15 @@ Route::post('search-team-user','TeamController@searchAssociatedUser');
 Route::get('roles','RoleController@getAllRoles');
 Route::get('roles/{id}','RoleController@getRoleById');
 Route::post('search-role-user','RoleController@searchRoleUser');
+Route::get('policies','LeaveController@getAllTypes');
+Route::get('policy/{id}','LeaveController@getLeaveById');
+Route::post('search-leave-user','LeaveController@searchLeaveUser');
+Route::get('edit-policy/{id}','LeaveController@editPolicy');
+Route::post('update-policy/{id}','LeaveController@updatePolicy');
+Route::get('create-policy','LeaveController@createForm');
+Route::post('create-policy','LeaveController@createPolicy');
+Route::get('delete-policy/{id}','LeaveController@deletePolicy');
+Route::get('recover-policy/{id}','LeaveController@recoverPolicy');
 Route::get('logout','Auth\LoginController@logout');
 
 Route::get('test-mail','UserController@mailForm');

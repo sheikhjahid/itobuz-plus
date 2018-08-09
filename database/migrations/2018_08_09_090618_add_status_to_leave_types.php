@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeaveTypesTable extends Migration
+class AddStatusToLeaveTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateLeaveTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('policies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('policies', function (Blueprint $table) {
+            $table->integer('status')->after('name')->default(1);
         });
     }
 
@@ -28,6 +25,8 @@ class CreateLeaveTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('policies');
+        Schema::table('policies', function (Blueprint $table) {
+            $table->dropColumn(['status']);
+        });
     }
 }

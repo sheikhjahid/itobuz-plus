@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Leave extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['user_id','leave_id','start_date','end_date','apply_date','approved_rejected_date','comments','status','seen'];
+    protected $fillable = ['user_id','policy_id','start_date','end_date','apply_date','approved_rejected_date','comments','status','seen'];
 
     public function user()
     {
@@ -15,6 +15,6 @@ class Leave extends Model
     }
     public function type()
     {
-    	return $this->hasMany('App\LeaveType','leave_id');
+    	return $this->belongsTo('App\Policy','policy_id');
     }
 }

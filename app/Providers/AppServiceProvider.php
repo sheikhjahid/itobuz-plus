@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
        $this->app->bind('App\Contracts\UserInterface', 'App\Repositories\UserRepository');
         $this->app->bind('App\Contracts\TeamInterface', 'App\Repositories\TeamRepository');
-         $this->app->bind('App\Contracts\RoleInterface', 'App\Repositories\RoleRepository');
+        $this->app->bind('App\Contracts\RoleInterface', 'App\Repositories\RoleRepository');
+        $this->app->bind('App\Contracts\LeaveInterface', 'App\Repositories\LeaveRepository');
     }
 }

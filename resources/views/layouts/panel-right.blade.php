@@ -29,6 +29,12 @@
                    <a href="{{ url('/roles') }}">
                     <span class="role-icon"><i class="fa fa-circle"></i> Roles</span>
                   </a>
+                  <a href="{{ url('/policies') }}">
+                    <span class="policy-icon"><i class="fa fa-list"></i> Policy</span>
+                  </a>
+                  <a href="#">
+                    <span class="leave-icon"><i class="fa fa-bed"></i> Leave</span>
+                  </a>
                 </li>
               </ul>
           </nav>

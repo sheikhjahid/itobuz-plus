@@ -29,9 +29,9 @@
         <tbody>
         	<td>{{ $data->name }}</td>
         	@if($data->status==1)
-        	<td>{{ "Active" }}</td>
+        	<td><span class="label label-danger">Active</span></td>
         	 @else
-        	 <td>{{ "Inactive" }}</td>
+        	 <td><span class="label label-danger">Inactive</span></td>
         	  @endif
         	<td style="width:75%">
         		<a href="{{url('roles',[$data->id])}}">
@@ -42,7 +42,7 @@
         		</a>
                 @if($data->status==1)
         		<a href="#">
-        			<button class="btn btn-danger activated"><i class="fa fa-toggle-on"></i></button>
+        			<button class="btn btn-success"><i class="fa fa-toggle-on"></i></button>
         		</a>
                 @else
                 <a href="#">

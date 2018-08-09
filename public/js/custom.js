@@ -81,4 +81,42 @@ jQuery(document).ready(function()
   });
 });
 
+
+    jQuery('#search_leave_user').submit(function(e){
+
+    e.preventDefault();
+
+    var name = document.getElementById('name').value;
+    var id = document.getElementById('leave').value;
+   
+    $value=jQuery(this).val();
+    console.log(name);
+    jQuery.ajax({
+
+      type : 'post',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url :  'http://localhost/office+/public/search-leave-user',
+      data: {'name':name,'id':id},
+
+        success: function (response) 
+        {
+          var trHTML = '';
+          jQuery('#leave_user_data').html(response);
+          $.each(response, function (key,value) {
+            trHTML += 
+            '<tr><td>' + value.name + 
+            '</td><td>' + value.email + 
+            '</td><td>' + value.phone + 
+            '</td><td>' + value.address + 
+            '</td><td>' + value.created_at + 
+            '</td></tr>';     
+          });
+
+          $('#leave_user_data').append(trHTML);
+        }
+  });
+});
+
 });

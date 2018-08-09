@@ -109,7 +109,7 @@
         		</a>
                 @if($data->status==1)
         		<a href="{{ url('/delete-users',[$data->id]) }}">
-        			<button class="btn btn-danger activated"><i class="fa fa-toggle-on"></i></button>
+        			<button class="btn btn-success"><i class="fa fa-toggle-on"></i></button>
         		</a>
                 @else
                 <a href="{{ url('/recover-users',[$data->id]) }}">
