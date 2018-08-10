@@ -13,7 +13,7 @@ class Leave extends Model
     {
     	return $this->belongsTo('App\User','user_id');
     }
-    public function type()
+    public function policy()
     {
     	return $this->belongsTo('App\Policy','policy_id');
     }

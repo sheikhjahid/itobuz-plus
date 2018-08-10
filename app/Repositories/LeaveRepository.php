@@ -23,6 +23,18 @@ class LeaveRepository implements LeaveInterface
 	{
 		try
 		{
+			return $this->policy->all();
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getTypeDataPagination()
+	{
+		try
+		{
 			return $this->policy->paginate(5);
 		}
 		catch(\Exception $e)
@@ -112,6 +124,18 @@ class LeaveRepository implements LeaveInterface
 			return $policyRecover;
 		}
 		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getAppliedLeaveData()
+	{
+		try
+		{
+			return $this->leave->with('user','policy')->paginate(5);
+		}
+		catch(\Excpetion $e)
 		{
 			return $e->getMessage();
 		}

@@ -4,19 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LeaveTypeRequest;
+use App\Http\Requests\LeaveRequest;
 use App\Contracts\LeaveInterface;
+use App\Contracts\UserInterface;
+use Auth;
 
 class LeaveController extends Controller
 {
     protected $leaveInterface;
-    public function __construct(LeaveInterface $leaveInterface)
+    protected $userInterface;
+    public function __construct(LeaveInterface $leaveInterface, UserInterface $userInterface)
     {
     	$this->leaveInterface = $leaveInterface;
+        $this->userInterface = $userInterface;
     }
 
     public function getAllTypes()
     {
-    	$leaveData = $this->leaveInterface->getTypeData();
+    	$leaveData = $this->leaveInterface->getTypeDataPagination();
     	return view('Leave.allTypes')->with('leavedata',$leaveData);
     }
 
@@ -71,10 +76,6 @@ class LeaveController extends Controller
         }
     }
 
-    public function createForm()
-    {
-        return view('Leave.createPolicy');
-    }
     public function createPolicy(LeaveTypeRequest $request)
     {
         $requestData = $request->all();
@@ -113,6 +114,24 @@ class LeaveController extends Controller
         {
             return redirect('policies')->with('recover_failure','Unable to recover policy data');
         }
+    }
+
+    public function getAllLeaves()
+    {
+        $policyData = $this->leaveInterface->getTypeData();
+        $leaveData = $this->leaveInterface->getAppliedLeaveData();
+        return view('Leave.allLeaves')->with([
+            'leavedata' => $leaveData,
+            'policydata' => $policyData
+        ]);
+    }
+
+    public function createLeave(LeaveRequest $request)
+    {
+        // $requestData = $request->all();
+        $user_id = Auth::user()->id;
+        $email = $this->userInterface->getTeamLeaderEmail($user_id);
+        return $email;
     }
 
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Contracts\UserInterface;
 use App\Contracts\TeamInterface;
@@ -75,7 +75,7 @@ class UserController extends Controller
     									    'roleData'=>$roleData]);
     }
 
-    public function updataUserById($id, UserRequest $request)
+    public function updataUserById($id, UpdateUserRequest $request)
     {
       $requestData = $request->all();
       $checkUpdatedData = $this->userInterface->updateUserDataById($id, $requestData);

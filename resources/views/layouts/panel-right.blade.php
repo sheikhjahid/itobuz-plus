@@ -32,7 +32,7 @@
                   <a href="{{ url('/policies') }}">
                     <span class="policy-icon"><i class="fa fa-list"></i> Policy</span>
                   </a>
-                  <a href="#">
+                  <a href="{{ url('/leaves') }}">
                     <span class="leave-icon"><i class="fa fa-bed"></i> Leave</span>
                   </a>
                 </li>

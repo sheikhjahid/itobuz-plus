@@ -70,6 +70,11 @@ class UserRepository implements UserInterface
 		try
 		{
 			$updateUserData = $this->user->find($id)->update($request);
+			$getUserData = $this->user->find($id);
+			$getUserData->role()->delete();
+			$getUserData->role()->attach($request['role_id']);
+			// dd($updateUserData);
+			// $id->role()->attach($request['role_id']);
 			DB::commit();
 			return $updateUserData;
 		}
@@ -173,6 +178,19 @@ class UserRepository implements UserInterface
 		{
 			$userdata = $this->user->select('email')->where('team_id',1)->get();
 			return $userdata;
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getTeamLeaderEmail($id)
+	{
+		try
+		{
+			$getUserData = $this->user->where('id',$id)->with('role')->get();
+			return $getUserData;
 		}
 		catch(\Exception $e)
 		{
