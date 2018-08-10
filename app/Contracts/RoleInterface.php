@@ -7,4 +7,5 @@ interface RoleInterface
 	public function getRoleData();
 	public function getRoleDataById($id);
 	public function getRoleUser($id, $request);
+	public function createRoleData($request);
 }

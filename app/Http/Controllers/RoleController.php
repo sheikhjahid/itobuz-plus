@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
 use App\Contracts\RoleInterface;
 
 class RoleController extends Controller
@@ -23,6 +24,20 @@ class RoleController extends Controller
     {
     	$roleData = $this->roleInterface->getRoleDataById($id);
     	return view('Role.singleRole')->with('roledata',$roleData);
+    }
+
+    public function createRole(RoleRequest $request)
+    {
+        $requestData = $request->all();
+        $checkCreatedData = $this->roleInterface->createRoleData($requestData);
+        if($checkCreatedData)
+        {
+            return redirect('roles')->with('create_success','Role data created successfully!!');
+        }
+        else
+        {
+            return redirect('roles')->with('create_failure','Unbale to create role data!!');
+        }
     }
 
     public function searchRoleUser(Request $request)

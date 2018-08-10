@@ -4,7 +4,7 @@
 	top:14%;
 	left:12%;
 }
-#add_team
+#modal_button
 {
 	position: absolute;
     top: 12%;
@@ -24,3 +24,4 @@
 {
 	color:red;
 }
+

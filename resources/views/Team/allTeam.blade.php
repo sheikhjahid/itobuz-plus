@@ -45,7 +45,8 @@
 <div class="box">
     <div class="box-header">
       <h2>Team Table</h2>
-      <a href="{{url('create-team-form')}}"><button class="btn btn-default" id="add_team">Add Team <i class="fa fa-plus"></i></button></a>
+      <button class="btn btn-default" data-target="#team_create" data-toggle="modal" id="modal_button">Add Team <i class="fa fa-plus"></i></button>
+      @include('Modal.createTeamModal')
     </div>
     <div class="table-responsive">
       <table ui-jp="dataTable" ui-options="{

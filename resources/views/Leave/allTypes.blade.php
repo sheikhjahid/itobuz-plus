@@ -45,7 +45,8 @@
 <div class="box">
     <div class="box-header">
       <h2>Leave Types</h2>
-      <a href="{{url('create-policy')}}"><button class="btn btn-default" id="add_team">Add Type <i class="fa fa-plus"></i></button></a>
+      <button class="btn btn-default" id="modal_button" data-target="#policy_create" data-toggle="modal">Add Type <i class="fa fa-plus"></i></button>
+      @include('Modal.createPolicyModal')
     </div>
     <div class="table-responsive">
       <table ui-jp="dataTable" ui-options="{

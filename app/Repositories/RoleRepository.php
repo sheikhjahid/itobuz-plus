@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Contracts\RoleInterface;
 use App\Role;
 use App\User;
+use DB;
 class RoleRepository implements RoleInterface
 {
 	protected $role;
@@ -51,6 +52,22 @@ class RoleRepository implements RoleInterface
 		}
 		catch(\Exception $e)
 		{
+			return $e->getMessage();
+		}
+	}
+
+	public function createRoleData($request)
+	{
+		DB::beginTransaction();
+		try
+		{
+			$createRoleData = $this->role->create($request);
+			DB::commit();
+			return $createRoleData;
+		}
+		catch(\Exception $e)
+		{
+			DB::rollback();
 			return $e->getMessage();
 		}
 	}

@@ -2,10 +2,21 @@
 
 @section('content')
 
+@if(session()->has('create_success'))
+<div class="alert alert-success">
+    {{ session()->get('create_success') }}
+</div>
+@endif
+@if(session()->has('create_failure'))
+<div class="alert alert-success">
+    {{ session()->get('create_failure') }}
+</div>
+@endif
 <div class="box">
     <div class="box-header">
       <h2>Role Table</h2>
-      <a href="{{url('create-team-form')}}"><button class="btn btn-default" id="add_team">Add Role <i class="fa fa-plus"></i></button></a>
+      <button class="btn btn-default" id="modal_button" data-target="#role_create" data-toggle="modal">Add Role <i class="fa fa-plus"></i></button>
+      @include('Modal.createRoleModal')
     </div>
     <div class="table-responsive">
       <table ui-jp="dataTable" ui-options="{
