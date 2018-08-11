@@ -119,4 +119,36 @@ jQuery(document).ready(function()
   });
 });
 
+jQuery('#start_date, #end_date').datetimepicker({
+       
+    lang: 'en',
+    format: 'Y-m-d h:i',
+    minDate: new Date(),
+    beforeShowDay: nonWorkingDays        
+});
+
+function nonWorkingDays(date) {
+
+            var day = date.getDay(), Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6;
+            var week = 0 | date.getDate() / 7; 
+
+            
+            if(week==2 || week==4)
+            {
+              if(day == 6)
+              {
+                 return [false];
+              }//end of inner-if
+            }//end of if
+
+            if (day == 0)
+            {
+                return [false];
+            }//end of if
+
+         return [true];   
+
+  }
+
+
 });

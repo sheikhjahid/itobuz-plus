@@ -26,10 +26,6 @@ class UserRepository implements UserInterface
 		try
 		{
 			$createUser = $this->user->create($request);
-			if(!empty($createUser))
-			{
-				$createUser->role()->attach($request['role_id']);
-			}
 			DB::commit();
 			return $createUser;
 		}
@@ -69,12 +65,10 @@ class UserRepository implements UserInterface
 		DB::beginTransaction();
 		try
 		{
+			// dd($request);
 			$updateUserData = $this->user->find($id)->update($request);
 			$getUserData = $this->user->find($id);
-			$getUserData->role()->delete();
-			$getUserData->role()->attach($request['role_id']);
-			// dd($updateUserData);
-			// $id->role()->attach($request['role_id']);
+			// dd($getUserData);
 			DB::commit();
 			return $updateUserData;
 		}
@@ -185,12 +179,11 @@ class UserRepository implements UserInterface
 		}
 	}
 
-	public function getTeamLeaderEmail($id)
+	public function getTeamLeaderEmail($user_id)
 	{
 		try
 		{
-			$getUserData = $this->user->where('id',$id)->with('role')->get();
-			return $getUserData;
+			dd($user_id);
 		}
 		catch(\Exception $e)
 		{

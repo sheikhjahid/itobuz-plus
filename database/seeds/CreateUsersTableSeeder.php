@@ -18,8 +18,9 @@ class CreateUsersTableSeeder extends Seeder
         	'address' => 'kolkata',
             'phone' => 9877382131,
         	'status' => 1,
-        	'team_id' => 1
-        ])->role()->attach(['role_id'=>1]);
+        	'team_id' => 1,
+            'role_id' => 1
+        ]);
 
         $user = User::create([
             'name' => 'jahid+user',
@@ -28,8 +29,8 @@ class CreateUsersTableSeeder extends Seeder
             'address' => 'kolkata',
             'phone' => 9876738921,
             'status' => 1,
-            'team_id' => 3
-        ])->role()->attach(['role_id'=>3]);
-
+            'team_id' => 3,
+            'role_id' => 1
+        ]);
     }
 }

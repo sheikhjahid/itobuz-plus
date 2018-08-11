@@ -13,4 +13,5 @@ interface LeaveInterface
     public function deletePolicyData($id);
     public function recoverPolicyData($id);
     public function getAppliedLeaveData();
+    public function createLeaveData($request);
 }

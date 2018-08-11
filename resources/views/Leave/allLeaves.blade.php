@@ -2,16 +2,6 @@
 
 @section('content')
 
-<!-- @if(session()->has('update_success'))
-<div class="alert alert-success">
-    {{ session()->get('update_success') }}
-</div>
-@endif
-@if(session()->has('update_failure'))
-<div class="alert alert-success">
-    {{ session()->get('update_failure') }}
-</div>
-@endif
 @if(session()->has('create_success'))
 <div class="alert alert-success">
     {{ session()->get('create_success') }}
@@ -22,26 +12,7 @@
     {{ session()->get('create_failure') }}
 </div>
 @endif
-@if(session()->has('delete_success'))
-<div class="alert alert-success">
-    {{ session()->get('delete_success') }}
-</div>
-@endif
-@if(session()->has('delete_failure'))
-<div class="alert alert-success">
-    {{ session()->get('delete_failure') }}
-</div>
-@endif
-@if(session()->has('recover_success'))
-<div class="alert alert-success">
-    {{ session()->get('recover_success') }}
-</div>
-@endif
-@if(session()->has('recover_failure'))
-<div class="alert alert-success">
-    {{ session()->get('recover_failure') }}
-</div>
-@endif -->
+
 <div class="box">
     <div class="box-header">
       <h2>Leave Taken</h2>
@@ -61,12 +32,13 @@
         }" class="table table-striped b-t b-b">
         <thead>
           <tr>
-            <th style="width:10%">Name</th>
-            <th style="width:10%">Type</th>
-            <th style="width:10%">Initialised</th>
+            <th style="width:12%">Name</th>
+            <th style="width:18%">Type</th>
+            <th style="width:13%">Initialised</th>
             <th style="width:10%">Status</th>
-            <th style="width:10%">Comments</th>
-            <th style="width:10%">Action</th>
+            <th style="width:10%">Start-Date</th>
+            <th style="width:10%">End-Date</th>
+            <th style="width:13%">Action</th>
 
           </tr>
         </thead>
@@ -74,30 +46,21 @@
         <tbody>
         	<td>{{ $data->user->name }}</td>
             <td>{{ $data->policy->name }}</td>
-            <td>{{ $data->apply_date }}</td>
-            <td>{{ $data->status }}</td>
-            <td>{{ $data->comments }}</td>
-           <!--  @if($data->status==1)
-            <td><span class="label label-danger">Active</span></td>
+            <td>{{ date('Y-m-d',strtotime($data->apply_date)) }}</td>
+            @if($data->status==1)
+            <td>{{ "Pending" }}</td>
+            @elseif($data->status==0)
+            <td>{{ "Rejected" }}</td>
             @else
-            <td><span class="label label-danger">Inactive</span></td>
-            @endif -->
+            <td>{{ "Accepted" }}
+            @endif    
+            <td>{{ date('Y-m-d',strtotime($data->start_date)) }}</td>
+            <td>{{ date('Y-m-d',strtotime($data->end_date)) }}</td>
         	<td style="width:75%">
+        	  <button class="btn btn-primary" data-toggle="modal"><i class="fa fa-eye"></i></button>
         		<a href="#">
-        			<button class="btn btn-primary"><i class="fa fa-eye"></i></button>
+        			<button class="btn btn-warning"><i class="fa fa-download"></i></button>
         		</a>
-        		<a href="#">
-        			<button class="btn btn-warning"><i class="fa fa-edit"></i></button>
-        		</a>
-                <!-- @if($data->status==1)
-                <a href="#">
-                    <button class="btn btn-success"><i class="fa fa-toggle-on"></i></button>
-                </a>
-                @else
-                <a href="{{url('recover-policy',[$data->id])}}">
-                    <button class="btn btn-danger"><i class="fa fa-toggle-off"></i></button>
-                </a>
-                @endif -->
         	</td>
         	@endforeach
         </tbody>

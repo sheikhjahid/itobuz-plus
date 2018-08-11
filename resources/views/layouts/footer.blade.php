@@ -11,6 +11,8 @@
 <script src="{{URL::asset('js/jquery.min.js')}}"></script>
 <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
 <script src="{{URL::asset('js/custom.js')}}"></script>
+<script src="{{URL::asset('js/bootstrap-datetimepicker.js')}}"></script>
+<script src="{{URL::asset('js/jquery.datetimepicker.js')}}"></script>
 <!-- endbuild -->
 </body>
 </html>

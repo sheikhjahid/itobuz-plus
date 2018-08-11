@@ -27,4 +27,7 @@
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}" type="text/css" />
   <!-- endbuild -->
   <link rel="stylesheet" href="{{ URL::asset('css/font.css') }}" type="text/css" />
+  <link rel="stylesheet"  href="{{URL::asset('css/jquery.datetimepicker.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('css/bootstrap-datetimepicker.css')}}">
+
 </head>

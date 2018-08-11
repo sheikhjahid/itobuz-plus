@@ -140,4 +140,19 @@ class LeaveRepository implements LeaveInterface
 			return $e->getMessage();
 		}
 	}
+
+	public function createLeaveData($request)
+	{
+		DB::beginTransaction();
+		try
+		{
+			$createLeaveData = $this->leave->create($request);
+			DB::commit();
+			return $createLeaveData;
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
 }

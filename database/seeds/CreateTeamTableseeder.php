@@ -14,7 +14,7 @@ class CreateTeamTableseeder extends Seeder
     {
         Team::create([
         	'name' => 'admin',
-            'status' => 1
+            'status' => 1,
         ]);
         Team::create([
         	'name' => 'front-end',

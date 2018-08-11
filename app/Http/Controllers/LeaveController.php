@@ -7,8 +7,8 @@ use App\Http\Requests\LeaveTypeRequest;
 use App\Http\Requests\LeaveRequest;
 use App\Contracts\LeaveInterface;
 use App\Contracts\UserInterface;
-use Auth;
-
+use Auth,Carbon,Mail;
+use App\Mail\SendLeaveRequest;
 class LeaveController extends Controller
 {
     protected $leaveInterface;
@@ -128,10 +128,27 @@ class LeaveController extends Controller
 
     public function createLeave(LeaveRequest $request)
     {
-        // $requestData = $request->all();
+        $requestData = [
+            'user_id' => Auth::user()->id,
+            'policy_id' => $request->policy_id,
+            'start_date' => date('Y-m-d h:i',strtotime($request->start_date)),
+            'end_date' => date('Y-m-d h:i', strtotime($request->end_date)),
+            'apply_date' => Carbon\Carbon::now(),
+            'comments' => $request->comments,
+            'status' => 1
+        ];
         $user_id = Auth::user()->id;
         $email = $this->userInterface->getTeamLeaderEmail($user_id);
-        return $email;
+        $checkCreatedData = $this->leaveInterface->createLeaveData($requestData);
+        if($checkCreatedData)
+        {
+            Mail::to($email)->send(new SendLeaveRequest(Auth::user()->name,Auth::user()->email,$requestData['comments']));
+            return redirect('leaves')->with('create_success','Leave applied successfully!!');
+        }
+        else
+        {
+            return redirect('leaves')->with('create_failure','Unable to apply the leave!!');
+        }
     }
 
 }

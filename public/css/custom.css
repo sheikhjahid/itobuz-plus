@@ -24,4 +24,16 @@
 {
 	color:red;
 }
-
+.comments
+{
+	position:absolute;
+	top:38%;
+	left:42%;
+}
+.policy_id 
+{
+	border: solid 1px; 
+	border-radius: 24px;   
+    width:218px;
+    height:37px;
+}

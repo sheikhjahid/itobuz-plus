@@ -43,7 +43,7 @@ class UserController extends Controller
        $checkCreatedData = $this->userInterface->insertUserData($requestData);
        if($checkCreatedData)
        {
-        Mail::to([$request])->send(new SendUsernamePassword($checkCreatedData,$request->password));
+        Mail::to($requestData['email'])->send(new SendUsernamePassword($checkCreatedData,$request->password));
         return redirect('users')->with('create_success','User created successfully!!');
        }
        else

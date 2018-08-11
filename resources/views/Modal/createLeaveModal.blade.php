@@ -7,29 +7,32 @@
      
       <div class="modal-body text-center p-lg">
         {!!Form::open(['method'=>'post','url'=>'create-leave'])!!}
-        <label for="start_date"> Start Date : </label>
-        <input type="datetime-local" name="start_date" value="{{Date('Y-m-d')}}">
+        <label for="start_date"><b> Start Date : </b></label>
+        <input type="text" name="start_date" id="start_date">
          </br>
          </br>
-        <label for="end_date"> End Date : </label>
-        <input type="datetime-local" name="end_date" value="{{Date('Y-m-d')}}">
+        <label for="end_date"><b> End Date : </b></label>
+        <input type="text" name="end_date" id="end_date">
         </br>
          </br>
-        <select name="policy_id">
+         <label for="leave_policy"><b> Select Type : </b></label>
+        <select name="policy_id" class="policy_id">
           @foreach($policydata as $policy)
-          <option value="{{$policy->id}}">{{ $policy->name }}</option>
+          <b><option class="policy_select" value="{{$policy->id}}">{{ $policy->name }}</option></b>
           @endforeach
         </select>
         </br>
         </br>
-        <textarea name="comments" rows="10"></textarea>
+        <label for="comments" class="comments"><b>Reason </b></label>
+        </br>
+        <textarea name="comments" rows="10" cols="30" placeholder="Enter your message here.."></textarea>
         </br>
         </br>
       </div>
        <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
          <a href="#">
-                 <b>{!! Form::button('Create',['class' => 'btn btn-primary','type' => 'submit','style' => 'width:94px;position:absolute;left:58%;top:92%' ]) !!}</b>
+                 <b>{!! Form::button('Create',['class' => 'btn btn-primary','type' => 'submit','style' => 'width:94px;position:absolute;left:58%;top:90.7%' ]) !!}</b>
           </a>
       </div>
       {!!Form::close()!!}
