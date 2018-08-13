@@ -20,15 +20,38 @@ class UserRepository implements UserInterface
 		$this->role = $role;
 	}
 
-	public function insertUserData($request)
+	public function insertUserData($request,$team_id='')
 	{
 		DB::beginTransaction();
 		try
 		{
 			$createUser = $this->user->create($request);
+			if(($createUser->role_id==1 )||($createUser->role_id==2)||($createUser->role_id==3))
+			{
+				$this->user->where([
+				'role_id'=>4
+			])->update(['parent_id'=>$createUser->id]);	
+			}
+			elseif($createUser->role_id==4)
+			{
+			        $this->user->where([
+					'team_id'=>$createUser->team_id,
+					'role_id'=>5])->update(['parent_id'=>$createUser->id]);
+
+					$this->user->where([
+					'team_id'=>$createUser->team_id,
+					'role_id'=>$createUser->role_id])->update(['parent_id'=>1]);
+			}
+			else
+			{
+			    $findManager = $this->user->where([
+			    	'team_id'=>$createUser->team_id,
+			    	'role_id'=>4])->get();
+			    $assignManager = $this->user->where('team_id',$createUser->team_id)->update(['parent_id'=>$findManager->id]);
+			}
 			DB::commit();
-			return $createUser;
-		}
+			return $createUser;	
+		}	
 		catch(\Exception $e)
 		{
 			DB::rollback();
@@ -40,7 +63,7 @@ class UserRepository implements UserInterface
 	{
 		try
 		{
-			return $this->user->with('team','role')->get();
+			return $this->user->with('team','role')->latest()->get();
 		}
 		catch(\Exception $e)
 		{

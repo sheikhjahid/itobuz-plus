@@ -16,11 +16,11 @@ class SendUsernamePassword extends Mailable
      *
      * @return void
      */
-    protected $user;
-    public $password;
-    public function __construct($user,$password)
+    public $user,$email,$password;
+    public function __construct($user,$email,$password)
     {
         $this->user = $user;
+        $this->email = $email;
         $this->password = $password;
     }
 
@@ -37,8 +37,8 @@ class SendUsernamePassword extends Mailable
         ->from(env('MAIL_FROM_ADDRESS'), $name)
         ->subject($subject)
         ->with([
-                'name'         => $this->user->name,
-                'username'     => $this->user->email,
+                'name'         => $this->user,
+                'username'     => $this->email,
                 'password'     => $this->password,
                ]);
     }

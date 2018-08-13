@@ -40,10 +40,10 @@ class UserController extends Controller
        $requestData = $request->all();
        $requestData['password'] = Hash::make($request->password);
        $requestData['email'] = $request->email;
-       $checkCreatedData = $this->userInterface->insertUserData($requestData);
+       $checkCreatedData = $this->userInterface->insertUserData($requestData, $request->team_id);
        if($checkCreatedData)
        {
-        Mail::to($requestData['email'])->send(new SendUsernamePassword($checkCreatedData,$request->password));
+        Mail::to($requestData['email'])->send(new SendUsernamePassword($request->name,$request->email,$request->password));
         return redirect('users')->with('create_success','User created successfully!!');
        }
        else

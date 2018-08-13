@@ -4,7 +4,7 @@ namespace App\Contracts;
 
 interface UserInterface
 {
-	public function insertUserData($request);
+	public function insertUserData($request,$team_id);
 	public function getUserData();
 	public function getUserDataById($id);
 	public function updateUserDataById($id, $request);

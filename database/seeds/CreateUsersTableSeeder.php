@@ -30,7 +30,7 @@ class CreateUsersTableSeeder extends Seeder
             'phone' => 9876738921,
             'status' => 1,
             'team_id' => 3,
-            'role_id' => 1
+            'role_id' => 5
         ]);
     }
 }
