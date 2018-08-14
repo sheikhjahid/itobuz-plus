@@ -118,6 +118,7 @@
         </tbody>
         	@endforeach
       </table>
+      {!! $userdata->links() !!}
     </div>
   </div>
 

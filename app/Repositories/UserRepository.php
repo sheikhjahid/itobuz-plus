@@ -64,7 +64,7 @@ class UserRepository implements UserInterface
 	{
 		try
 		{
-			return $this->user->with('team','role')->latest()->get();
+			return $this->user->with('team','role')->latest()->paginate(5);
 		}
 		catch(\Exception $e)
 		{
@@ -203,11 +203,23 @@ class UserRepository implements UserInterface
 		}
 	}
 
-	public function getTeamLeaderEmail($user_id)
+	public function getTeamLeaderEmail($team_id)
 	{
 		try
 		{
-			dd($user_id);
+			if(Auth::user()->role_id==4)
+			{
+				$email = $this->user->select('email')->where('role_id',2)->get();
+				return $email;
+			}
+			else
+			{
+				$email = $this->user->select('email')->where([
+					'team_id'=>$team_id,
+					'role_id'=>4
+				])->get();
+				return $email;
+			}
 		}
 		catch(\Exception $e)
 		{

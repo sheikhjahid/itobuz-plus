@@ -23,9 +23,13 @@
         </select>
         </br>
         </br>
-        <label for="comments" class="comments"><b>Reason </b></label>
+        <label for="comments"><b>Reason </b></label>
         </br>
-        <textarea name="comments" rows="10" cols="30" placeholder="Enter your message here.."></textarea>
+        <textarea name="comments" rows="10" cols="30" placeholder="Enter your message here..">
+          Dear Sir,
+                    This is to inform that i want to take a leave for the above dates due to {your_reason}.
+
+        </textarea>
         </br>
         </br>
       </div>

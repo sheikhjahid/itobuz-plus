@@ -137,8 +137,8 @@ class LeaveController extends Controller
             'comments' => $request->comments,
             'status' => 1
         ];
-        $user_id = Auth::user()->id;
-        $email = $this->userInterface->getTeamLeaderEmail($user_id);
+        $team_id = Auth::user()->team_id;
+        $email = $this->userInterface->getTeamLeaderEmail($team_id);
         $checkCreatedData = $this->leaveInterface->createLeaveData($requestData);
         if($checkCreatedData)
         {
