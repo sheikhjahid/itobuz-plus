@@ -69,7 +69,7 @@
           <tr>
             <th style="width:15%">Name</th>
             <th style="width:-1%"></th>
-            <th style="width:16%">Email</th>
+            <th style="width:3%">Email</th>
             <th style="width:2%">Address</th>
             <th style="width:5%">Contact</th>
             <th style="width:13%">Team</th>

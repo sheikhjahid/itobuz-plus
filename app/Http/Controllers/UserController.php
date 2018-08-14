@@ -12,6 +12,7 @@ use Auth,Hash;
 use Mail;
 use App\Mail\TestMail;
 use App\Mail\SendUsernamePassword;
+use App\User;
 
 class UserController extends Controller
 {
@@ -40,7 +41,7 @@ class UserController extends Controller
        $requestData = $request->all();
        $requestData['password'] = Hash::make($request->password);
        $requestData['email'] = $request->email;
-       $checkCreatedData = $this->userInterface->insertUserData($requestData, $request->team_id);
+       $checkCreatedData = $this->userInterface->insertUserData($requestData);
        if($checkCreatedData)
        {
         Mail::to($requestData['email'])->send(new SendUsernamePassword($request->name,$request->email,$request->password));

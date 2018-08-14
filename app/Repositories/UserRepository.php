@@ -19,8 +19,7 @@ class UserRepository implements UserInterface
 		$this->team = $team;
 		$this->role = $role;
 	}
-
-	public function insertUserData($request,$team_id='')
+	public function insertUserData($request)
 	{
 		DB::beginTransaction();
 		try
@@ -44,10 +43,12 @@ class UserRepository implements UserInterface
 			}
 			else
 			{
-			    $findManager = $this->user->where([
-			    	'team_id'=>$createUser->team_id,
-			    	'role_id'=>4])->get();
-			    $assignManager = $this->user->where('team_id',$createUser->team_id)->update(['parent_id'=>$findManager->id]);
+				$teamLeader = $this->user->where([
+					'team_id'=>$createUser->team_id,
+					'role_id'=>4
+				])->first();
+			    $this->user->where(['team_id'=>$createUser->team_id,
+									'role_id'=>$createUser->role_id])->update(['parent_id'=>$teamLeader->id]);
 			}
 			DB::commit();
 			return $createUser;	
