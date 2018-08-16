@@ -60,8 +60,9 @@ Route::post('create-policy','LeaveController@createPolicy');
 Route::post('update-policy/{id}','LeaveController@updatePolicy');
 Route::get('delete-policy/{id}','LeaveController@deletePolicy');
 Route::get('recover-policy/{id}','LeaveController@recoverPolicy');
-Route::get('leaves','LeaveController@getAllLeaves');
+Route::get('leaves','LeaveController@getPendingLeaves');
 Route::post('create-leave','LeaveController@createLeave');
+Route::get('edit-leave/{id}','LeaveController@editLeave');
 Route::get('logout','Auth\LoginController@logout');
 
 Route::get('test-mail','UserController@mailForm');

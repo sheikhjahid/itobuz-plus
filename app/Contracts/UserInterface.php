@@ -15,8 +15,7 @@ interface UserInterface
 	public function uploadUserImage($id, $image);
 	public function recoveryPassword($email, $request);
 	public function getTeamLeaderEmail($team_id);
-
-
+	public function getHierarchyData();
 
 	public function findEmail();
 }

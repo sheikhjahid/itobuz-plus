@@ -62,9 +62,6 @@
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
 
-                                       <!--  <p style="line-height: 24px;margin-bottom:15px;">
-                                            Greetings from Itobuz Technologies, your registration is complete!!
-                                        </p> -->
                                         <p style="line-height: 24px; margin-bottom:20px;">
                                         Respected Sir,
                                         </p>

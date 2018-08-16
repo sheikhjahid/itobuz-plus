@@ -209,15 +209,15 @@ class UserRepository implements UserInterface
 		{
 			if(Auth::user()->role_id==4)
 			{
-				$email = $this->user->select('email')->where('role_id',2)->get();
+				$email = $this->user->where('role_id',2)->get();
 				return $email;
 			}
 			else
 			{
-				$email = $this->user->select('email')->where([
+				$email = $this->user->where([
 					'team_id'=>$team_id,
 					'role_id'=>4
-				])->get();
+				])->first();
 				return $email;
 			}
 		}
@@ -225,5 +225,22 @@ class UserRepository implements UserInterface
 		{
 			return $e->getMessage();
 		}
+	}
+
+	public function getHierarchyData()
+	{
+		try
+		{
+			if(Auth::user()->role_id==5)
+			{
+				$getHierarchyData = $this->user->where('role_id',2)->first();
+				return $getHierarchyData;
+			}
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+		
 	}
 } 

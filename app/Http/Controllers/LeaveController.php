@@ -27,7 +27,7 @@ class LeaveController extends Controller
 
     public function getLeaveById($id)
     {
-        $leaveData = $this->leaveInterface->getLeaveDataById($id);
+        $leaveData = $this->leaveInterface->getPolicyById($id);
         return view('Leave.singleLeave')->with('leavedata',$leaveData);
     }
 
@@ -58,7 +58,7 @@ class LeaveController extends Controller
 
     public function editPolicy($id)
     {
-        $leaveData = $this->leaveInterface->getLeaveDataById($id);
+        $leaveData = $this->leaveInterface->getPolicyById($id);
         return view('Leave.editLeaveType')->with('leavedata',$leaveData);
     }
 
@@ -116,13 +116,19 @@ class LeaveController extends Controller
         }
     }
 
-    public function getAllLeaves()
+    public function getPendingLeaves()
     {
         $policyData = $this->leaveInterface->getTypeData();
-        $leaveData = $this->leaveInterface->getAppliedLeaveData();
+        $getHierarchyData = $this->userInterface->getHierarchyData();
+        $pendingData = $this->leaveInterface->getPendingLeaveData();
+        $approvedData = $this->leaveInterface->getApprovedLeaveData();
+        $rejectedData = $this->leaveInterface->getRejectedLeaveData();
         return view('Leave.allLeaves')->with([
-            'leavedata' => $leaveData,
-            'policydata' => $policyData
+            'pendingdata' => $pendingData,
+            'approveddata' => $approvedData,
+            'rejecteddata' => $rejectedData,
+            'policydata' => $policyData,
+            'hierarchy' => $getHierarchyData
         ]);
     }
 
@@ -138,17 +144,41 @@ class LeaveController extends Controller
             'status' => 1
         ];
         $team_id = Auth::user()->team_id;
-        $email = $this->userInterface->getTeamLeaderEmail($team_id);
+        $manager = $this->userInterface->getTeamLeaderEmail($team_id);
+        $hierarchyEmail = $request->email;
         $checkCreatedData = $this->leaveInterface->createLeaveData($requestData);
         if($checkCreatedData)
         {
-            Mail::to($email)->send(new SendLeaveRequest(Auth::user()->name,Auth::user()->email,$requestData['comments']));
+            if(Auth::user()->role_id==5 && $hierarchyEmail==null)
+            {
+              Mail::to($manager)->send(new SendLeaveRequest(Auth::user()->name,Auth::user()->email,$requestData['comments']));
+            }
+            else
+            {
+                $emailData = [$manager,$hierarchyEmail];
+                $i=0;
+                foreach($emailData as $data)
+                {
+                   $email[$i] = $data;
+                   Mail::to($email[$i])->send(new SendLeaveRequest(Auth::user()->name,Auth::user()->email,$requestData['comments']));
+                   $i++;
+                }
+                
+            }
             return redirect('leaves')->with('create_success','Leave applied successfully!!');
         }
         else
         {
             return redirect('leaves')->with('create_failure','Unable to apply the leave!!');
         }
+    }
+
+    public function showLeaveById(Request $request)
+    {
+        $leave_id = $request->get('leave_id');
+        $leaveData = $this->leaveInterface->getLeaveDataById($leave_id);
+        echo json_encode($leave_details);
+        die();
     }
 
 }

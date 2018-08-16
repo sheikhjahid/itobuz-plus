@@ -131,7 +131,6 @@ function nonWorkingDays(date) {
 
             var day = date.getDay(), Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6;
             var week = 0 | date.getDate() / 7; 
-
             
             if(week==2 || week==4)
             {
@@ -150,5 +149,23 @@ function nonWorkingDays(date) {
 
   }
 
+$('.view-applied-leave-details').on('click',function()
+{
+       var leave_id=$(this).data('id');
+       var path=url+'showLeaveById';
+       var param={leave_id:leave_id};
+       $.post( path, param, function( data ) 
+       {
+        console.log(data);
+        var res=JSON.parse(data);
+
+        $('#update_leave_applied .start_date').html(res.leave_type);
+        $('#update_leave_applied .end_date').html(res.end_date);
+        $('#update_leave_applied .apply_date').html(res.apply_date);
+        $('#update_leave_applied .comments').html(res.comments);
+        $('#update_leave_applied').modal();
+
+       });
+});
 
 });

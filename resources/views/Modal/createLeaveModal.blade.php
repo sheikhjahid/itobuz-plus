@@ -22,21 +22,23 @@
           @endforeach
         </select>
         </br>
-        </br>
+        </br> 
         <label for="comments"><b>Reason </b></label>
         </br>
-        <textarea name="comments" rows="10" cols="30" placeholder="Enter your message here..">
-          Dear Sir,
-                    This is to inform that i want to take a leave for the above dates due to {your_reason}.
-
+        <textarea name="comments" rows="10" cols="30" placeholder="Enter your message here..">This is to inform that i want to take a leave for the above dates due to {your_reason}.
         </textarea>
+        </br>
+        </br> 
+        @if(Auth::user()->role_id==5)
+        <input type="checkbox" class="inform-hierarchy" name="email" value="{{ $hierarchy->email }}"><label for="hierarchy-email" class="hierarchy-email-text">Inform hierarchy</label>
+        @endif
         </br>
         </br>
       </div>
        <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
          <a href="#">
-                 <b>{!! Form::button('Create',['class' => 'btn btn-primary','type' => 'submit','style' => 'width:94px;position:absolute;left:58%;top:90.7%' ]) !!}</b>
+                 <b>{!! Form::button('Create',['class' => 'btn btn-primary','type' => 'submit','style' => 'width:94px;position:absolute;left:58%;top:91.7%' ]) !!}</b>
           </a>
       </div>
       {!!Form::close()!!}

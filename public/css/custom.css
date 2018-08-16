@@ -37,3 +37,15 @@
     width:218px;
     height:37px;
 }
+.inform-hierarchy
+{
+	position:absolute;
+	left:11%;
+}
+
+.hierarchy-email-text
+{
+	position: absolute;
+    left: 15%;
+    bottom: 6%;
+}

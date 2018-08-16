@@ -43,7 +43,7 @@ class LeaveRepository implements LeaveInterface
 		}
 	}
 
-	public function getLeaveDataById($id)
+	public function getPolicyById($id)
 	{
 		try
 		{
@@ -129,13 +129,37 @@ class LeaveRepository implements LeaveInterface
 		}
 	}
 
-	public function getAppliedLeaveData()
+	public function getPendingLeaveData()
 	{
 		try
 		{
-			return $this->leave->with('user','policy')->paginate(5);
+			return $this->leave->where('status',1)->with('user','policy')->paginate(5);
 		}
 		catch(\Excpetion $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getApprovedLeaveData()
+	{
+		try
+		{
+			return $this->leave->where('status',2)->with('user','policy')->paginate(5);
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getRejectedLeaveData()
+	{
+		try
+		{
+			return $this->leave->where('status',0)->with('user','policy')->paginate(5);
+		}
+		catch(\Exception $e)
 		{
 			return $e->getMessage();
 		}
@@ -149,6 +173,19 @@ class LeaveRepository implements LeaveInterface
 			$createLeaveData = $this->leave->create($request);
 			DB::commit();
 			return $createLeaveData;
+		}
+		catch(\Exception $e)
+		{
+			return $e->getMessage();
+		}
+	}
+
+	public function getLeaveDataById($id)
+	{
+		try
+		{
+			$result = $this->leave->with('user','policy')->find($id);
+			return $result;
 		}
 		catch(\Exception $e)
 		{
