@@ -38,7 +38,7 @@
             <td>{{ date('Y-m-d',strtotime($data->end_date)) }}</td>
         	<td style="width:75%">
             @if(Auth::user()->role_id==1||Auth::user()->role_id==2||Auth::user()->role_id==3||Auth::user()->role_id==4)
-              <a href="javascript:void(0)" class="view-applied-leave-details"  data-id="<?php echo $data->id; ?>">
+              <a href="javascript:void(0)" class="view-applied-leave-details"  data-id="{{ $data->id }}">
                       <button class="btn btn-success">
                      <i class="fa fa-eye"></i>
                    </button>

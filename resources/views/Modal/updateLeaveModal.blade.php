@@ -40,19 +40,19 @@
 
                         </div>
                       </div>
-                       -->
-                      
-                      
-                      <div class="row">
+                    -->
+                    
+                    
+                    <div class="row">
 
-                        <div class="col-md-8"><b> COMMENTS :  </b></div><div class="comments"></div>
+                      <div class="col-md-8"><b> COMMENTS :  </b></div><div class="comments"></div>
 
-                      </div>                    
-                     
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                      </div>
+                    </div>                    
+                    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
