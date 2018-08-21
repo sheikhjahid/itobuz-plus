@@ -55,11 +55,22 @@
           </div>
         </div>
         <div class="col-sm-5">
+<<<<<<< Updated upstream
           <p class="text-md profile-status">I am feeling good!</p>
           <button class="btn btn-sm white" data-toggle="collapse" data-target="#editor">Edit</button>
           <div class="collapse box m-t-sm" id="editor">
             <textarea class="form-control no-border" rows="2" placeholder="Type something..."></textarea>
           </div>
+=======
+          <p class="text-md profile-status">Contact : {{Auth::user()->phone}}</p>
+          <button class="btn btn-warning" data-toggle="modal" data-target="#editProfileDetails"><i class="fa fa-pencil"></i> Edit Details</button>
+          @include('Modal.editUserDetails')
+          <p>
+          @if(Auth::user()->role_id==5)
+          <h3 class="m-0 m-b-xs"> Manager : {{$tl_data->name}}</h3>
+          @endif
+          </p>
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>
